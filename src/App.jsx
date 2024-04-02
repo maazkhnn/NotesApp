@@ -1,50 +1,21 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-// You may have this boolean value after using some authentication
-let loggedIn = true;
-
-// You may have a list of todos from your database after your user logs in.
-const todos = ["Todo 1", "Todo 2", "Todo 3"];
-
-// You may get all of this information in this format from your database
-const todonotes = [
-  { title: "Todo 1", content: "Walk my dog" },
-  { title: "Todo 2", content: "Walk my dog again" },
-  { title: "Todo 3", content: "Remember to walk the dog again" },
-  { title: "Todo 4", content: "Please don't forget to walk the dog" },
-  { title: "Todo 5", content: "Oh no I think I forgot" },
-  { title: "Todo 6", content: "Todo 6 content" },
-  { title: "Todo 7", content: "Todo 7 content" },
-  { title: "Todo 8", content: "Todo 8 content" },
-];
 
 const projectList = [
-  { id: 1, name: "Project 1", description: "This is project 1 description." },
-  { id: 2, name: "Project 2", description: "This is project 2 description." },
+  { id: 1, name: "Personal Portfolio Website", description: "A website to showcase my projects and skills." },
+  { id: 2, name: "React To Do App", description: "A todo list application built with React for learning purposes." },
 ];
 
-// Navbar component
 function NavBar() {
   return (
     <nav>
       <div>
-        <h1 className="logo">Notes</h1>
+        <h1 className="logo">My Portfolio</h1>
       </div>
       <ul className="nav-links">
-        <li>
-          Home
-        </li>
-        <li>
-          About
-        </li>
-        <li>
-          Contact
-        </li>
-        <li>
-          Login
-        </li>
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
       </ul>
     </nav>
   );
@@ -53,8 +24,8 @@ function NavBar() {
 function HomePage() {
   return (
     <div>
-      <h1>What's good y'all! Welcome to My Notes App</h1>
-      <p>These are humble beginnings. so don't judge too harshly</p>
+      <h1>Welcome to My Personal Portfolio</h1>
+      <p>Hi, I'm Maaz, a passionate developer. These are my humble beginnings.</p>
     </div>
   );
 }
@@ -64,9 +35,8 @@ function Hobbies() {
     <div>
       <h2>Hobbies</h2>
       <ul>
-        <li>Reading</li>
-        <li>Coding</li>
-        <li>Walking</li>
+        <li>Soccer</li>
+        <li>Film Photography</li>
       </ul>
     </div>
   );
@@ -84,10 +54,24 @@ function Projects() {
 }
 
 function Contact() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert('Thank you for your message! I will get back to you soon.');
+  };
+
   return (
     <div>
-      <h2>Contact</h2>
-      <p>Email: example@example.com</p>
+      <h2>Contact Me</h2>
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your Name" />
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Your Email" />
+        <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Your Message"></textarea>
+        <button type="submit">Send</button>
+      </form>
     </div>
   );
 }
@@ -95,11 +79,11 @@ function Contact() {
 function Footer() {
   return (
     <footer>
-      <p>© 2024 My Notes App. All rights reserved.</p>
+      <p>© 2024 [Muhammad Maaz Khan]. All rights reserved.</p>
     </footer>
   );
 }
-// ProjectDetail component to display each project
+
 function ProjectDetail({ name, description }) {
   return (
     <div>
@@ -109,31 +93,17 @@ function ProjectDetail({ name, description }) {
   );
 }
 
-// Note component, using props to individualize each note.
-function Notes({ title, content }) {
-  return (
-    <div className="note">
-      <h1>{title}</h1>
-      <p>{content}</p>
-    </div>
-  );
-}
-
 function App() {
   return (
     <>
       <NavBar />
-      {loggedIn && (
-        <>
-          <HomePage />
-          <Hobbies />
-          <Projects />
-          <Contact />
-          <Footer />
-        </>
-      )}
+      <HomePage />
+      <Hobbies />
+      <Projects />
+      <Contact />
+      <Footer />
     </>
   );
 }
 
-export default App
+export default App;
