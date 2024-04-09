@@ -2,10 +2,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
 }
 
 body {
   font-family: 'Open Sans', sans-serif;
+  line-height: 1.6;
+  padding-bottom: 60px;
   background-color: #f4f4f4;
   color: #333;
 }
@@ -15,7 +18,7 @@ nav {
   justify-content: space-between;
   padding: 1rem;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -23,6 +26,7 @@ nav {
 
 .logo {
   font-size: 1.5rem;
+  font-weight: bold; 
 }
 
 .nav-links {
@@ -34,10 +38,47 @@ nav {
 
 .nav-links li {
   padding: 0 20px;
+  cursor: pointer; 
 }
 
 .nav-links li:hover {
-  color: #007bff;
+  color: #007bff; 
+}
+
+.mode-toggle {
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  margin: 1rem;
+  background-color: #555; 
+  color: #fff;
+  border: 1px solid #ccc; 
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+.mode-toggle:hover {
+  background-color: #777;
+}
+
+.header, .contact {
+  padding: 2rem;
+  text-align: center; 
+}
+
+.projects {
+  padding: 10px;
+  text-align: center;
+}
+
+.header h1 {
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem; 
+}
+
+.header p {
+  margin-bottom: 2rem;
+  font-size: 1.2rem; 
 }
 
 form {
@@ -47,49 +88,72 @@ form {
   margin-top: 1rem;
 }
 
-input[type="text"], input[type="email"], textarea {
+input[type="text"], input[type="email"], textarea, button {
   padding: 0.5rem;
   border: 1px solid #ccc;
-  border-radius: 5px; 
+  border-radius: 5px;
 }
 
 button {
-  padding: 0.5rem 1rem;
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3; 
+  background-color: #0056b3;
 }
 
 .project {
-  background-color: #fff; 
+  background-color: #fff;
   border: 1px solid #eaeaea;
   border-radius: 5px;
   padding: 1rem;
-  margin: 1rem;
+  max-width: 340px;
+  margin: 1rem auto;
 }
 
 .project:hover {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+footer {
+  background-color: #fff;
+  color: #333;
+  text-align: center;
+  padding: 1rem 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.1); 
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode nav, .dark-mode footer, .dark-mode .project {
+  background-color: #1e1e1e;
+}
+
+.dark-mode .nav-links li:hover, .dark-mode .mode-toggle {
+  color: #9a9a9a; 
+}
+
+.dark-mode input[type="text"], .dark-mode input[type="email"], .dark-mode textarea, .dark-mode button {
+  background-color: #2a2a2a;
+  color: #ddd;
+  border-color: #3a3a3a;
+}
 
 @media (max-width: 768px) {
-  .nav-links {
-    display: none; 
+  .nav-links, .mode-toggle {
+    display: none;
   }
 
-  .nav-links, .project {
-    width: 100%;
-  }
-
-  form {
-    width: 90%;
-    margin: 0 auto;
+  .header, .projects, .hobbies, .contact {
+    padding: 10px;
   }
 }

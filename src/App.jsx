@@ -1,59 +1,41 @@
-import { useState } from 'react'
-import './App.css'
+import React, { useState } from 'react';
+import './App.css';
 
 const projectList = [
   { id: 1, name: "Personal Portfolio Website", description: "A website to showcase my projects and skills." },
-  { id: 2, name: "React To Do App", description: "A todo list application built with React for learning purposes." },
+  { id: 2, name: "Graph Based Maze Solver Application", description: "A Java-based application that utilizes graph theory to solve mazes. \
+  It converts mazes into weighted, directed graphs, employing DFS, BFS, and Dijkstra's algorithms for pathfinding. \
+  Features include a graphical user interface for interactive maze generation and visualization of algorithmic solutions in real-time." },
 ];
 
-function NavBar() {
-  return (
-    <nav>
-      <div>
-        <h1 className="logo">My Portfolio</h1>
-      </div>
-      <ul className="nav-links">
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
-      </ul>
-    </nav>
-  );
-}
+const NavBar = () => (
+  <nav>
+    <div><h1 className="logo">My Portfolio</h1></div>
+    <ul className="nav-links">
+      <li>Home</li>
+      <li>About</li>
+      <li>Contact</li>
+    </ul>
+  </nav>
+);
 
-function HomePage() {
-  return (
-    <div>
-      <h1>Welcome to My Personal Portfolio</h1>
-      <p>Hi, I'm Maaz, a passionate developer. These are my humble beginnings.</p>
-    </div>
-  );
-}
+const ProjectDetail = ({ name, description }) => (
+  <div className="project">
+    <h3>{name}</h3>
+    <p>{description}</p>
+  </div>
+);
 
-function Hobbies() {
-  return (
-    <div>
-      <h2>Hobbies</h2>
-      <ul>
-        <li>Soccer</li>
-        <li>Film Photography</li>
-      </ul>
-    </div>
-  );
-}
+const Projects = () => (
+  <div>
+    <h2>Projects</h2>
+    {projectList.map(project => (
+      <ProjectDetail key={project.id} name={project.name} description={project.description} />
+    ))}
+  </div>
+);
 
-function Projects() {
-  return (
-    <div>
-      <h2>Projects</h2>
-      {projectList.map((project) => (
-        <ProjectDetail key={project.id} name={project.name} description={project.description} />
-      ))}
-    </div>
-  );
-}
-
-function Contact() {
+const Contact = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -74,36 +56,33 @@ function Contact() {
       </form>
     </div>
   );
-}
+};
 
-function Footer() {
-  return (
-    <footer>
-      <p>© 2024 [Muhammad Maaz Khan]. All rights reserved.</p>
-    </footer>
-  );
-}
+const Footer = () => (
+  <footer>
+    <p>© 2024 Muhammad Maaz Khan. All rights reserved.</p>
+  </footer>
+);
 
-function ProjectDetail({ name, description }) {
+const App = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
+
   return (
-    <div>
-      <h3>{name}</h3>
-      <p>{description}</p>
+    <div className={`App ${isDarkMode ? 'dark-mode' : ''}`}>
+      <NavBar />
+      <button onClick={toggleDarkMode} className="mode-toggle">
+        {isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+      </button>
+      <header className="header">
+        <h1>Welcome to My Personal Portfolio</h1>
+        <p>Hi, I'm Maaz, a passionate coder. These are my humble beginnings.</p>
+      </header>
+      <section className="projects"><Projects /></section>
+      <section className="contact"><Contact /></section>
+      <Footer />
     </div>
   );
-}
-
-function App() {
-  return (
-    <>
-      <NavBar />
-      <HomePage />
-      <Hobbies />
-      <Projects />
-      <Contact />
-      <Footer />
-    </>
-  );
-}
+};
 
 export default App;
